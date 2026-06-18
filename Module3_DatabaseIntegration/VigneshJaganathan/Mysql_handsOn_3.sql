@@ -4,7 +4,7 @@ SELECT employee_id,COUNT(module_id) FROM certifications GROUP BY employee_id HAV
        >(SELECT AVG((module_no)) FROM (
         SELECT COUNT(module_id) AS module_no FROM certifications GROUP BY employee_id) AS T);
 
---36
+-- 36
 SELECT s.module_name FROM skill_modules s 
 WHERE EXISTS (
     SELECT 1 FROM certifications c WHERE c.module_id = s.module_id
@@ -13,20 +13,20 @@ AND NOT EXISTS (
     SELECT 1 FROM certifications c WHERE c.module_id = s.module_id AND (c.grade != 'A' OR c.grade IS NULL)
 );
 
---37
+-- 37
 SELECT i.instructor_name,i.department_id,i.salary FROM instructors i
     WHERE i.salary=(
         SELECT MAX(s.salary) FROM instructors s WHERE s.department_id=i.department_id
     );
 
---38
+-- 38
 SELECT depart.department_id,depart.avg_salary FROM (
     SELECT department_id,AVG(salary) as avg_salary FROM instructors 
     GROUP BY department_id ) AS depart 
     WHERE depart.avg_salary>85000; 
 
 /* Task 2 */
---39
+-- 39
 CREATE VIEW vw_employee_completion_summary AS 
     SELECT e.employee_id, CONCAT(e.first_name,' ',e.last_name) AS employee_name
     ,d.dept_name, COUNT(c.module_id) AS courses_enrolled,
@@ -43,7 +43,7 @@ CREATE VIEW vw_employee_completion_summary AS
     JOIN departments on e.dept_name=d.dept_name
     GROUP BY e.employee_id, e.first_name, e.last_name, e.department;
 
---40
+-- 40
 CREATE VIEW vw_course_stats AS
     SELECT s.module_name,s.module_code, COUNT(c.employee_id),
     ROUND(AVG(
@@ -58,15 +58,15 @@ CREATE VIEW vw_course_stats AS
         FROM skill_modules s LEFT JOIN certifications c ON s.module_id=c.module_id
         GROUP BY s.module_name,s.module_code HAVING count(c.employee_id)>0;
 
---41
+-- 41
 SELECT employee_name FROM vw_employee_completion_summary WHERE gpa>3.00;
 
---42
+-- 42
 UPDATE vw_employee_completion_summary SET gpa=4.5 WHERE employee_id=1;
 /*ERROR 1288 (HY000): The target table vw_employee_completion_summary of 
   the UPDATE is not updatable is displayed when attempting to update view*/
 
---43
+-- 43
 DROP VIEW IF EXISTS vw_course_stats;
 DROP VIEW IF EXISTS vw_employee_completion_summary;
 
