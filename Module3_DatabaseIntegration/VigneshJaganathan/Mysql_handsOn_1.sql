@@ -56,3 +56,5 @@ ALTER TABLE certifications ADD CHECK (grade in ('A','B','C','D','F') OR grade IS
 ALTER TABLE departments RENAME COLUMN hod_name TO head_of_dept;
 ALTER TABLE employees DROP COLUMN contact_number;
 ALTER TABLE departments RENAME COLUMN head_of_dept TO hod_name;
+
+
