@@ -1,7 +1,6 @@
 import pymysql
 import time
 
-# Base DB Connection Details
 db_config = {
     'host': 'localhost',
     'user': 'root',
