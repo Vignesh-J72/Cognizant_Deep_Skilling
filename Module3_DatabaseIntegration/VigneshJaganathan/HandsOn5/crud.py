@@ -4,6 +4,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, joinedload
 from models import Department, Employee, SkillModule, Certification, Instructor,base
+
+
+''' Performance of N+1 problem: It takes 9 queries to get the result without joinedload.
+    Performance of eager loading: It only takes 1 single query to load through use of joinedload. '''
+
 user="root"
 password="vigneshj722"
 host="127.0.0.1"
@@ -49,12 +54,19 @@ def add_people():
 
 def read_record():
     computer=session.query(Employee).join(Department).filter(Department.dept_name=="Computer Science").all()
+    print("N+1 loading")
     for i in computer:
         print(f"Name: {i.first_name} {i.last_name},Course: {i.certifications}")
 
     certs=session.query(Certification).all()
     print("Certifications")
     for i in certs:
+        print(i)
+
+def read_better():
+    print("Eager loading")
+    cert=session.query(Certification).options(joinedload(Certification.employee),joinedload(Certification.skill_module)).all()
+    for i in cert:
         print(i)
 
 def update_():
@@ -68,6 +80,7 @@ if __name__=="__main__":
     print("New run")
     add_people()
     read_record()
+    read_better()
     update_()
     
     
