@@ -13,27 +13,27 @@ def create_connection():
     engine=create_engine(f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}")
     return engine
 
-class department(base):
+class Department(base):
     __tablename__="departments"
     department_id=Column(Integer,primary_key=True,autoincrement=True)
     dept_name=Column(String(100),nullable=False,unique=True)
     hod_name=Column(String(100))
     budget=Column(Numeric(12,2))
     employees=relationship("Employee",back_populates="department")
-    skill_modules=relationship("Skills",back_populates="department")
+    skill_modules=relationship("SkillModule",back_populates="department")
     instructors=relationship("Instructor",back_populates="department")
 
-class employees(base):
+class Employee(base):
     __tablename__="employees"
     employee_id=Column(Integer,primary_key=True,autoincrement=True)
     first_name=Column(String(50),nullable=False)
     last_name=Column(String(50),nullable=False)
     email=Column(String(100),unique=True,nullable=False)
     date_of_birth=Column(Date)
-    department_id=Column(Integer)
+    department_id=Column(Integer,ForeignKey("departments.department_id"))
     hiring_year=Column(Integer)
     department=relationship("Department",back_populates="employees")
-    certifications=relationship("Certifications",back_populates="employee",cascade="all,delete-orphan")
+    certifications=relationship("Certification",back_populates="employee",cascade="all,delete-orphan")
 
 class Instructor(base):
     __tablename__ = 'instructors'
@@ -44,6 +44,15 @@ class Instructor(base):
     salary = Column(Numeric(10, 2))
     department = relationship('Department', back_populates='instructors')
 
+class SkillModule(base):
+    __tablename__ = 'skill_modules'
+    module_id = Column(Integer, primary_key=True, autoincrement=True)
+    module_name = Column(String(150), nullable=False)
+    module_code = Column(String(20), unique=True)
+    credits = Column(Integer)
+    department_id = Column(Integer, ForeignKey('departments.department_id'))
+    department = relationship('Department', back_populates='skill_modules')
+    certifications = relationship('Certification', back_populates='skill_module', cascade="all, delete-orphan")
 class Certification(base):
     __tablename__ = 'certifications'
     certification_id = Column(Integer, primary_key=True, autoincrement=True)
