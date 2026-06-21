@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Date, Numeric
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Boolean,Date, Numeric
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base 
 
@@ -32,8 +32,11 @@ class Employee(base):
     date_of_birth=Column(Date)
     department_id=Column(Integer,ForeignKey("departments.department_id"))
     hiring_year=Column(Integer)
+    #Hands on 7
+    is_active=Column(Boolean,default=True)
     department=relationship("Department",back_populates="employees")
     certifications=relationship("Certification",back_populates="employee",cascade="all,delete-orphan")
+    
 
 class Instructor(base):
     __tablename__ = 'instructors'
@@ -63,6 +66,16 @@ class Certification(base):
     employee = relationship('Employee', back_populates='certifications')
     skill_module = relationship('SkillModule', back_populates='certifications')
 
+class ModuleSchedule:
+    __tablename__="module_schedule"
+    schedule_id=Column(Integer,primary_key=True,auto_increment=True)
+    module_id=Column(Integer,ForeignKey('skill_modules.module_id'))
+    day_of_week=Column(String(20),nullable=False)
+    start_time=Column(String(20))
+    end_time=Column(String(20))
+
+
+
 if __name__=="__main__":
     try:
         engine=create_connection()
@@ -70,3 +83,4 @@ if __name__=="__main__":
         base.metadata.create_all(engine)
     except Exception as e:
         print("An exception has occured:",e)
+
