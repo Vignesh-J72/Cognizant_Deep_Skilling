@@ -1,10 +1,13 @@
 import pytest
 
+#PyTest uses 'test_NAME.py' syntax to discover test programs
+
 #Assert using function
 def func(x):
     return x+5
 
 #Multiple tests in one class
+# PyTest using TestClass and 'test_' keywords to discover testing classes 
 class TestClass:
     def test_one(self):
         x=0
