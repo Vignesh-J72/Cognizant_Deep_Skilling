@@ -5,3 +5,4 @@ Module4_UnitTesting/.vscode/settings.json
 package.json
 Module4_UnitTesting/Mocha/.mocharc.json
 Module4_UnitTesting/PyTest/.coverage
+db.sqlite3
