@@ -1,3 +1,6 @@
+#URL configuration to map urls to access by users.
+
+
 """
 URL configuration for trainingmanager project.
 
@@ -16,6 +19,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

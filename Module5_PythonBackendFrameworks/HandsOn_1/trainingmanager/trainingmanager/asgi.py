@@ -1,3 +1,6 @@
+#ASGI to handle asynchronous requests.
+
+
 """
 ASGI config for trainingmanager project.
 

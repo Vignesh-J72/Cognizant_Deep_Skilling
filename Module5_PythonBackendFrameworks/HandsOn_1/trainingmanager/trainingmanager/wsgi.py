@@ -1,3 +1,6 @@
+#WSGI to handle synchronous requests.
+
+
 """
 WSGI config for trainingmanager project.
 
