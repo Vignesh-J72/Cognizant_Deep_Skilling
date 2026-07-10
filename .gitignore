@@ -6,3 +6,4 @@ package.json
 Module4_UnitTesting/Mocha/.mocharc.json
 Module4_UnitTesting/PyTest/.coverage
 db.sqlite3
+Module5_PythonBackendFrameworks/HandsOn_5/flask_trainingmanager/instance/corporate_training.db
