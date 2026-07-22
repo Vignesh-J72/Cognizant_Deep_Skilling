@@ -5,3 +5,12 @@ Module4_UnitTesting/.vscode/settings.json
 package.json
 Module4_UnitTesting/Mocha/.mocharc.json
 Module4_UnitTesting/PyTest/.coverage
+db.sqlite3
+Module5_PythonBackendFrameworks/HandsOn_5/flask_trainingmanager/instance/corporate_training.db
+Module5_PythonBackendFrameworks/HandsOn_9/fastapi_trainingmanager/fastapi_training.db
+Module5_PythonBackendFrameworks/HandsOn_10/fastapi_trainingmanager/student_service/students.db
+Module5_PythonBackendFrameworks/HandsOn_10/fastapi_trainingmanager/fastapi_training.db
+Module5_PythonBackendFrameworks/HandsOn_10/fastapi_trainingmanager/course_service/courses.db
+Module5_PythonBackendFrameworks/HandsOn_1/trainingmanager/trainer/models.py
+Module5_PythonBackendFrameworks/HandsOn_1/trainingmanager/trainer/models.py
+Module5_PythonBackendFrameworks/HandsOn_9/fastapi_trainingmanager/fastapi_training.db
