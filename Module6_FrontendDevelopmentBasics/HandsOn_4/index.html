@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Student Portal</title>
+        <link rel='stylesheet' href='styles.css'>
+        <script src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'></script>
+    </head>
+    <body>
+        <header>
+            <div class='site-name'>Student Portal</div>
+            <div class='hamburger'>&#9776;</div>
+            <nav>
+                <ul>
+                    <li><a href='#hero'>Home</a></li>
+                    <li><a href='#courses'>Courses</a></li>
+                    <li><a href='#notifications'>Notifications</a></li>
+                    <li><a href='#profile'>Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id='hero'>
+                <h1>Welcome to the Student Portal</h1>
+                <p>Your centralized hub for courses, grades, and academic updates.</p>
+                <button type='button'>Explore Courses</button>
+            </section>
+            <section class='stats-bar'>
+                <div class='stat-item'>
+                    <span class='stat-label'>Courses Enrolled</span>
+                    <span class='stat-value'>5</span>
+                </div>
+                <div class='stat-item'>
+                    <span class='stat-label'>GPA</span>
+                    <span class='stat-value'>3.8</span>
+                </div>
+                <div class='stat-item'>
+                    <span class='stat-label'>Semester</span>
+                    <span class='stat-value'>6</span>
+                </div>
+            </section>
+            <section id='courses'>
+                <h2>Enrolled Courses</h2>
+                <div class='controls'>
+                    <input type='text' id='search-courses' placeholder='Search courses...'>
+                    <button type='button' id='sort-btn'>Sort by Credits</button>
+                </div>
+                <div id='selected-course' class='selected-course-banner'>Click a course to view details.</div>
+                <div id='courses-loading' class='loading-indicator'>Loading courses...</div>
+                <div class='course-grid'></div>
+                <p id='total-credits'></p>
+            </section>
+            <section id='notifications'>
+                <h2>Notifications & Updates</h2>
+                <div id='notif-loading' class='loading-indicator' style='display:none;'>Loading notifications...</div>
+                <div id='notif-error' class='error-banner' style='display:none;'></div>
+                <button type='button' id='retry-btn' style='display:none;'>Retry</button>
+                <div class='notif-grid'></div>
+            </section>
+        </main>
+        
+        <script type='module' src='app.js'></script>
+    </body>
+</html>
