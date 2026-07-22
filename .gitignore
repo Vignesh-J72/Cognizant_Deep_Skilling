@@ -2,7 +2,6 @@
 *.pyc
 Module4_UnitTesting/.vscode/settings.json
 .vscode/settings.json
-package.json
 Module4_UnitTesting/Mocha/.mocharc.json
 Module4_UnitTesting/PyTest/.coverage
 Module5_PythonBackendFrameworks/HandsOn_1/trainingmanager/db.sqlite3
@@ -12,3 +11,9 @@ Module5_PythonBackendFrameworks/HandsOn_10/fastapi_trainingmanager/student_servi
 Module5_PythonBackendFrameworks/HandsOn_2/trainingmanager/db.sqlite3
 Module5_PythonBackendFrameworks/HandsOn_3/trainingmanager/db.sqlite3
 Module5_PythonBackendFrameworks/HandsOn_5/flask_trainingmanager/instance/corporate_training.db
+Module6_FrontendDevelopmentBasics/HandsOn_5/student-portal-react/public/favicon.svg
+Module6_FrontendDevelopmentBasics/HandsOn_5/student-portal-react/.oxlintrc.json
+Module6_FrontendDevelopmentBasics/HandsOn_5/student-portal-react/package-lock.json
+*.svg
+Module6_FrontendDevelopmentBasics/HandsOn_5/student-portal-react/vite.config.js
+node_modules/
