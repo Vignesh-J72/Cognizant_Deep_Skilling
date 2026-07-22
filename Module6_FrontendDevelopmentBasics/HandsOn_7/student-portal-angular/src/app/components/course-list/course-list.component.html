@@ -1,0 +1,26 @@
+<div>
+  <input 
+    type='text' 
+    class='search-bar' 
+    placeholder='Search courses by name or code...' 
+    [(ngModel)]='searchTerm'
+  />
+
+  <div *ngIf='loading' class='loading-indicator'>Loading courses via Angular CourseService...</div>
+
+  <div *ngIf='!loading && filteredCourses.length === 0' class='no-courses'>
+    No courses found matching your search.
+  </div>
+
+  <div *ngIf='!loading && filteredCourses.length > 0' class='course-grid'>
+    <app-course-card 
+      *ngFor='let course of filteredCourses; trackBy:trackByCourseId' 
+      [name]='course.name' 
+      [code]='course.code' 
+      [credits]='course.credits' 
+      [grade]='course.grade' 
+      [description]='course.description'
+    >
+    </app-course-card>
+  </div>
+</div>

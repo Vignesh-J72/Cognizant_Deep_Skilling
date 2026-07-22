@@ -1,0 +1,29 @@
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background-color:#1e293b;
+  color:#ffffff;
+}
+header h1{
+  font-size:1.5rem;
+}
+header h1 a{
+  color:#ffffff;
+  text-decoration:none;
+}
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:1.5rem;
+  align-items:center;
+}
+nav a{
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:500;
+}
+nav a:hover, nav a.active{
+  text-decoration:underline;
+}

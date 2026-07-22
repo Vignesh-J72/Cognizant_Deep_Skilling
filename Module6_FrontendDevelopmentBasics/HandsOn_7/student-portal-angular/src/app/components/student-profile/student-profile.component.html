@@ -1,0 +1,45 @@
+<div class='profile-card'>
+  <h2>Student Profile (Reactive Forms)</h2>
+  <form [formGroup]='profileForm' (ngSubmit)='onSubmit()' class='profile-form'>
+    <div class='form-group'>
+      <label for='name'>Full Name</label>
+      <input 
+        id='name' 
+        type='text' 
+        formControlName='name' 
+        [class.invalid]='profileForm.get("name")?.invalid && profileForm.get("name")?.touched'
+      />
+      <div *if='profileForm.get("name")?.invalid && profileForm.get("name")?.touched' class='error-msg'>
+        Name is required.
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label for='email'>Email Address</label>
+      <input 
+        id='email' 
+        type='email' 
+        formControlName='email' 
+        [class.invalid]='profileForm.get("email")?.invalid && profileForm.get("email")?.touched'
+      />
+      <div *ngIf='profileForm.get("email")?.invalid && profileForm.get("email")?.touched' class='error-msg'>
+        Enter a valid email address.
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label for='semester'>Current Semester (1-8)</label>
+      <input 
+        id='semester' 
+        type='number' 
+        formControlName='semester' 
+        [class.invalid]='profileForm.get("semester")?.invalid && profileForm.get("semester")?.touched'
+      />
+      <div *ngIf='profileForm.get("semester")?.invalid && profileForm.get("semester")?.touched' class='error-msg'>
+        Semester must be between 1 and 8.
+      </div>
+    </div>
+
+    <button type='submit' class='submit-btn' [disabled]='profileForm.invalid'>Save Profile</button>
+  </form>
+</div>
