@@ -7,16 +7,16 @@ from selenium.webdriver.support import expected_conditions as EC
 def test_simple_form_submission(driver, base_url, message):
     driver.get(f"{base_url}simple-form-demo")
     
-    input_box = driver.find_element(By.ID, "user-message")
+    wait = WebDriverWait(driver, 10)
+    input_box = wait.until(EC.presence_of_element_located((By.ID, "user-message")))
     input_box.clear()
     input_box.send_keys(message)
     print("Entered test message in form input")
     
     submit_btn = driver.find_element(By.ID, "showInput")
-    submit_btn.click()
-    print("Clicked submit button")
+    driver.execute_script("arguments[0].click();", submit_btn)
+    print("Clicked submit button via JavaScript")
     
-    wait = WebDriverWait(driver, 10)
     display_elem = wait.until(
         EC.presence_of_element_located((By.XPATH, "//div[@id='user-message']//span[@id='message'] | //p[@id='message']"))
     )
@@ -30,17 +30,21 @@ def test_checkbox_demo(driver, base_url):
     
     wait = WebDriverWait(driver, 10)
     checkbox = wait.until(
-        EC.presence_of_element_located((By.XPATH, "//input[@type='checkbox' and contains(@id, 'isAgeSelected')] | //input[@type='checkbox'][1]"))
+        EC.presence_of_element_located((By.ID, "isAgeSelected"))
     )
     
-    driver.execute_script("arguments[0].scrollIntoView(true); arguments[0].click();", checkbox)
+    # Scroll into view and click
+    driver.execute_script("arguments[0].scrollIntoView(true);", checkbox)
+    checkbox.click()
     print("Clicked checkbox")
-    assert checkbox.is_selected()
+    
+    assert checkbox.is_selected(), "Checkbox was not selected after first click"
     print("Asserted checkbox is selected")
     
-    driver.execute_script("arguments[0].click();", checkbox)
+    checkbox.click()
     print("Clicked checkbox again")
-    assert not checkbox.is_selected()
+    
+    assert not checkbox.is_selected(), "Checkbox was still selected after second click"
     print("Asserted checkbox is deselected")
 
 def test_dropdown_selection(driver, base_url):
@@ -58,13 +62,11 @@ def test_dropdown_selection(driver, base_url):
     
     selected_option = select_obj.first_selected_option
     assert selected_option.text == "Wednesday"
-    print("========== PAGE TEXT ==========")
-    print(driver.find_element(By.TAG_NAME, "body").text)
-    print("================================")
-    '''output_elem = wait.until(
+    
+    output_elem = wait.until(
         EC.presence_of_element_located((By.XPATH, "//p[contains(@class, 'selected-value')] | //span[contains(@class, 'selected-value')]"))
     )
     
     wait.until(lambda d: "Wednesday" in output_elem.text)
     assert "Wednesday" in output_elem.text
-    print("Asserted Wednesday is displayed in output message")'''
+    print("Asserted Wednesday is displayed in output message")
